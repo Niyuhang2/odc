@@ -36,13 +36,13 @@ import com.oceanbase.odc.plugin.task.api.datatransfer.model.ObjectResult;
 import com.oceanbase.odc.plugin.task.mysql.datatransfer.common.Constants;
 import com.oceanbase.tools.loaddump.common.model.ObjectStatus.Status;
 
-public class MySQLSchemaExportJobImpl extends AbstractJob {
+public class MySQLSchemaExportJob extends AbstractJob {
 
     private final DataTransferConfig transferConfig;
     private final File workingDir;
     private final DataSource dataSource;
 
-    public MySQLSchemaExportJobImpl(ObjectResult object, DataTransferConfig transferConfig, File workingDir,
+    public MySQLSchemaExportJob(ObjectResult object, DataTransferConfig transferConfig, File workingDir,
             DataSource dataSource) {
         super(object);
         this.transferConfig = transferConfig;
@@ -69,7 +69,7 @@ public class MySQLSchemaExportJobImpl extends AbstractJob {
         content.append(queryDdlForDBObject());
         // 4. append '$$' if it is a PL SQL; The end of sql assembling
         if (isPlObject()) {
-            content.append(Constants.DEFAULT_PL_DELIMITER);
+            content.append(Constants.LINE_BREAKER).append(Constants.DEFAULT_PL_DELIMITER);
         }
         /*
          * touch file
