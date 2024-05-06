@@ -66,7 +66,8 @@ public class DefaultFlowableConfiguration extends BaseFlowableConfiguration {
     }
 
     private String getJdbcUrl() {
-        return String.format("jdbc:oceanbase://%s:%s/%s?allowMultiQueries=true", host, port, schema);
+        return String.format("jdbc:oceanbase://%s:%s/%s?allowMultiQueries=true&useCompatibleMetadata=true",
+                host, port, schema);
     }
 
     static class NoForeignKeyInitializer implements ConnectionInitializer {
